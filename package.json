@@ -1,0 +1,79 @@
+{
+  "name": "vite-project",
+  "version": "0.0.0-alpha",
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/es/index.es.js",
+      "require": "./dist/cjs/index.cjs.js"
+    }
+  },
+  "engines": {
+    "node": ">=14.x"
+  },
+  "scripts": {
+    "dev": "vite",
+    "serve": "vite preview",
+    "build": "vite build",
+    "prebuild": "npm run transpile:clean && npm run transpile",
+    "docs": "npm run docs:clean && npm run docs:extract && npm run docs:generate",
+    "docs:clean": "rimraf ./docs/{api,temp}",
+    "docs:extract": "api-extractor run -c ./api-extractor.json",
+    "docs:generate": "api-documenter markdown -i ./docs/temp -o ./docs/api",
+    "test:integration": "jest -c jest.integration.config.js",
+    "test:unit": "jest -c jest.unit.config.js",
+    "transpile": "tsc",
+    "transpile:clean": "rimraf ./dist",
+    "transpile:validate": "tsc --noemit",
+    "transpile:watch": "tsc --watch",
+    "pre-commit": "lint-staged",
+    "prepare": "husky install"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/config-conventional": "^13.1.0",
+    "@microsoft/api-documenter": "^7.13.35",
+    "@microsoft/api-extractor": "^7.18.5",
+    "@types/chai": "^4.2.21",
+    "@types/jest": "^27.0.0",
+    "@types/node": "15.14.7",
+    "@types/sinon": "^10.0.2",
+    "@typescript-eslint/eslint-plugin": "^4.29.1",
+    "@typescript-eslint/parser": "^4.29.1",
+    "chai": "^4.3.4",
+    "eslint": "^7.2.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-import-resolver-typescript": "^2.4.0",
+    "eslint-plugin-import": "^2.24.0",
+    "eslint-plugin-jest": "^24.4.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-tsdoc": "^0.2.14",
+    "husky": "^7.0.1",
+    "jest": "^27.0.6",
+    "jest-playwright-preset": "^1.7.0",
+    "lint-staged": "^11.1.2",
+    "prettier": "^2.3.2",
+    "rimraf": "^3.0.2",
+    "rollup-plugin-copy": "^3.4.0",
+    "sinon": "^11.1.2",
+    "ts-jest": "^27.0.4",
+    "typescript": "^4.3.5",
+    "vite": "^2.4.4",
+    "vite-plugin-checker": "^0.3.4"
+  },
+  "lint-staged": {
+    "**/*.+(js|json|ts)": [
+      "eslint --fix"
+    ],
+    "**/*.{js,ts,json,html,css,md}": [
+      "prettier --write --ignore-unknown"
+    ]
+  }
+}

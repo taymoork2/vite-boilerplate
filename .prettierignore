@@ -1,0 +1,7 @@
+dist
+*.map
+*.es.js
+api-extractor.json
+package.json
+package-lock.json
+tsconfig.json

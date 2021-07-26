@@ -1,0 +1,1 @@
+{"version":3,"file":"index.es.js","sources":["../../src/feature1/index.ts"],"sourcesContent":["/**\n *\n * @public\n *\n * Feature\n *\n * @param val - a variable.\n * @returns - a string.\n */\nconst feat = (val: string): string => `Hello ${val}`;\n\nexport default feat;\n"],"names":["feat","val"],"mappings":";MASMA,EAAQC,GAAwB,SAASA"}
